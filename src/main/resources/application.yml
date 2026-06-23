@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: datacontract-hub
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/dchub}
+    username: ${DB_USERNAME:dchub}
+    password: ${DB_PASSWORD:dchub}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+
+server:
+  port: ${PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
